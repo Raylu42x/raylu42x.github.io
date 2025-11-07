@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Site Under Development</title>
+
+  <!-- Basic SEO & Social -->
+  <meta name="description" content="This site is currently under development. Check back soon — or contact the developer for access." />
+  <meta property="og:title" content="Site Under Development" />
+  <meta property="og:description" content="This site is currently under development." />
+  <meta property="og:type" content="website" />
+
+  <!-- Inline CSS for single-file convenience -->
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0f1724;
+      --muted:#9aa4b2;
+      --accent:#6ee7b7;
+      --accent-2:#60a5fa;
+      --glass: rgba(255,255,255,0.04);
+      --max-width:1000px;
+      color-scheme: dark;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:
+        radial-gradient(800px 400px at 10% 10%, rgba(96,165,250,0.06), transparent 10%),
+        radial-gradient(600px 300px at 90% 90%, rgba(110,231,183,0.04), transparent 10%),
+        var(--bg);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:32px;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    .container{
+      width:100%;
+      max-width:var(--max-width);
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:28px;
+      align-items:center;
+    }
+
+    @media (max-width:900px){
+      .container{grid-template-columns: 1fr; padding:20px}
+    }
+
+    .panel{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      border:1px solid rgba(255,255,255,0.04);
+      padding:28px;
+      border-radius:12px;
+      box-shadow: 0 6px 30px rgba(2,6,23,0.6);
+      color: #e6eef6;
+    }
+
+    .hero{
+      padding:36px;
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.0));
+      min-height:320px;
+      justify-content:center;
+    }
+
+    h1{
+      margin:0;
+      font-size: clamp(22px, 3.4vw, 34px);
+      letter-spacing: -0.02em;
+    }
+    p.lead{ margin:0; color:var(--muted); line-height:1.45 }
+
+    .meta{ display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-top:12px }
+    .badge{
+      background:var(--glass);
+      padding:8px 12px;
+      border-radius:999px;
+      color:var(--muted);
+      font-size:13px;
+      border:1px solid rgba(255,255,255,0.03);
+    }
+
+    /* Right column */
+    .info{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+    .card{
+      padding:18px;
+      border-radius:10px;
+      background: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.03);
+    }
+    .muted{ color:var(--muted); font-size:14px }
+
+    .progress{
+      height:12px;
+      background: rgba(255,255,255,0.03);
+      border-radius:999px;
+      overflow:hidden;
+      margin-top:8px;
+      border:1px solid rgba(255,255,255,0.02);
+    }
+    .progress > i{
+      display:block;
+      height:100%;
+      width:40%; /* changeable by script below */
+      background: linear-gradient(90deg,var(--accent),var(--accent-2));
+      transition: width 800ms cubic-bezier(.2,.9,.3,1);
+      box-shadow: 0 6px 18px rgba(96,165,250,0.08) inset;
+    }
+
+    .links{ display:flex; gap:12px; flex-wrap:wrap; margin-top:10px }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 14px;
+      border-radius:10px;
+      text-decoration:none;
+      font-weight:600;
+      font-size:14px;
+      color: #061826;
+      background: linear-gradient(180deg, #baf7d9, #6ee7b7);
+      border: none;
+      cursor:pointer;
+    }
+    .btn.secondary{
+      background:transparent;
+      color:var(--muted);
+      border:1px solid rgba(255,255,255,0.04);
+      box-shadow:none;
+    }
+
+    /* small print and accessibility */
+    footer { margin-top:14px; color:var(--muted); font-size:13px }
+
+    /* SVG animator */
+    .svg-wrap{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+    .gear{ width:140px; height:140px; transform-origin:center; animation:spin 6s linear infinite; opacity:0.96 }
+    @keyframes spin{ from{transform:rotate(0)} to{transform:rotate(360deg)} }
+
+    /* visually-hidden for accessibility */
+    .sr-only {
+      position: absolute !important;
+      height: 1px; width: 1px;
+      overflow: hidden;
+      clip: rect(1px, 1px, 1px, 1px);
+      white-space: nowrap;
+    }
+
+    /* staging unlock form */
+    .staging{ display:none; gap:8px; }
+    .staging.visible{ display:flex; flex-direction:column; }
+    input[type="password"]{
+      padding:10px 12px;
+      border-radius:8px;
+      border:1px solid rgba(255,255,255,0.06);
+      background: rgba(0,0,0,0.22);
+      color:inherit;
+    }
+    .note { font-size:13px; color:var(--muted) }
+  </style>
+</head>
+<body>
+  <!--
+    Development Landing Page
+    - Save as index.html and upload while site is under active work.
+    - Edit text, colors, or the 'progress' width in the JS section below.
+    - Reminder: staging unlock is client-side only — do not use for real security.
+  -->
+
+  <main class="container" role="main" aria-labelledby="dev-heading">
+    <section class="panel hero" aria-labelledby="dev-heading">
+      <h1 id="dev-heading">We're building something better.</h1>
+      <p class="lead">This site is currently in development. We're polishing features, testing performance, and aggressively removing bugs — because mediocre is boring.</p>
+
+      <div class="meta" aria-hidden="false">
+        <span class="badge" title="Status">Status: <strong>&nbsp;In progress&nbsp;</strong></span>
+        <span class="badge" title="Estimated completion">Progress: <strong id="progress-percent">40%</strong></span>
+        <span class="badge" title="Contact">Contact: <a href="mailto:dev@example.com" style="color:inherit; text-decoration:underline">dev@example.com</a></span>
+      </div>
+
+      <div style="display:flex; gap:22px; margin-top:18px; align-items:center; flex-wrap:wrap">
+        <div style="flex:1; min-width:200px">
+          <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center">
+              <div>
+                <div style="font-weight:700">Milestone</div>
+                <div class="muted">Core UI — API integration — Content import</div>
+              </div>
+              <div style="text-align:right">
+                <div style="font-weight:700" id="eta">ETA: TBD</div>
+                <div class="muted" style="font-size:13px">Last updated: <span id="last-updated">—</span></div>
+              </div>
+            </div>
+            <div class="progress" aria-hidden="true" aria-label="progress bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="40">
+              <i></i>
+            </div>
+            <div style="margin-top:10px" class="muted">Want access to the staging site? Use the staging unlock on the right (for developer convenience only).</div>
+          </div>
+        </div>
+
+        <div style="width:360px; min-width:260px">
+          <div class="card info" aria-hidden="false">
+            <div class="svg-wrap" aria-hidden="true">
+              <!-- Decorative animated SVG (gears) -->
+              <svg class="gear" viewBox="0 0 100 100" aria-hidden="true" role="img">
+                <defs>
+                  <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+                    <stop offset="0%" stop-color="#60a5fa"/>
+                    <stop offset="100%" stop-color="#6ee7b7"/>
+                  </linearGradient>
+                </defs>
+                <g fill="none" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M50 28 A22 22 0 1 1 49.9 27.9" />
+                  <circle cx="50" cy="50" r="8" fill="url(#g1)" opacity="0.14"/>
+                  <g transform="translate(50 50)" stroke="none" fill="url(#g1)" opacity="0.06">
+                    <rect x="-2" y="-12" width="4" height="6" rx="1"/>
+                    <rect x="-2" y="6" width="4" height="6" rx="1"/>
+                    <rect x="-12" y="-2" width="6" height="4" rx="1"/>
+                    <rect x="6" y="-2" width="6" height="4" rx="1"/>
+                  </g>
+                </g>
+              </svg>
+            </div>
+
+            <div>
+              <div style="font-weight:700">Developer tools</div>
+              <div class="muted">Staging unlock (client-only). Use query string <code>?staging=1</code> to reveal the quick access form.</div>
+
+              <div id="staging-area" class="staging" aria-hidden="true" style="margin-top:10px">
+                <label for="staging-pass" class="sr-only">Staging password</label>
+                <input id="staging-pass" type="password" placeholder="Enter staging password" />
+                <div style="display:flex; gap:8px">
+                  <button class="btn" id="staging-go">Unlock</button>
+                  <button class="btn secondary" id="staging-cancel">Hide</button>
+                </div>
+                <div class="note">Note: This is a convenience toggle for developers only. It does not secure the site.</div>
+              </div>
+
+              <div class="links" style="margin-top:12px">
+                <a class="btn secondary" href="#" id="show-source" title="Open repository">View repo</a>
+                <a class="btn" href="mailto:dev@example.com" id="contact">Email dev</a>
+              </div>
+            </div>
+          </div>
+
+          <footer>
+            <div class="muted">Need to change content quickly? Edit the top section of this file — everything is in one place for speed.</div>
+          </footer>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (function(){
+      // Editable knobs
+      var progress = 40;        // integer 0..100 (change to reflect real progress)
+      var percentText = progress + "%";
+      var lastUpdated = new Date().toLocaleString(); // automatically populated
+      var etaText = "Q4 — Under review"; // change to whatever you'd prefer
+
+      // Wire up UI
+      document.getElementById('progress-percent').textContent = percentText;
+      document.querySelector('.progress > i').style.width = progress + '%';
+      document.getElementById('last-updated').textContent = lastUpdated;
+      document.getElementById('eta').textContent = etaText;
+      document.querySelector('[role="progressbar"]').setAttribute('aria-valuenow', String(progress));
+
+      // Staging unlock toggle (client-side convenience only)
+      var params = new URLSearchParams(location.search);
+      var stagingArea = document.getElementById('staging-area');
+      function showStaging(){ stagingArea.classList.add('visible'); stagingArea.setAttribute('aria-hidden','false') }
+      function hideStaging(){ stagingArea.classList.remove('visible'); stagingArea.setAttribute('aria-hidden','true') }
+
+      if (params.get('staging') === '1') showStaging();
+
+      document.getElementById('show-source').addEventListener('click', function(e){
+        e.preventDefault();
+        alert('Open your repository URL in a new tab (replace placeholder).');
+      });
+
+      document.getElementById('staging-cancel').addEventListener('click', function(){
+        hideStaging();
+      });
+
+      document.getElementById('staging-go').addEventListener('click', function(){
+        var pass = document.getElementById('staging-pass').value || '';
+        // Demo-only: check a quick local token (not secure). Replace or remove in production.
+        if(pass === 'devpass' || params.get('token') === 'devpass'){
+          alert('Staging unlocked — opening staging site (demo).');
+          // Example redirect to staging subdomain (customize)
+          window.location.href = (location.origin.replace(/^https?:\/\//, '') ? location.origin : '/') + '/staging';
+        } else {
+          alert('Incorrect staging password (demo). Use "devpass" or add ?token=devpass');
+        }
+      });
+
+      // Small UX: reveal staging area via keyboard "u" (useful for devs)
+      window.addEventListener('keydown', function(e){
+        if(e.key === 'u' && (e.ctrlKey || e.metaKey)) {
+          // ctrl/cmd + u toggles staging UI
+          stagingArea.classList.toggle('visible');
+        }
+      });
+
+      // Optional: Auto-increment progress visually for demo (comment out in production)
+      // setInterval(function(){
+      //   progress = Math.min(98, progress + Math.floor(Math.random()*3));
+      //   document.getElementById('progress-percent').textContent = progress + '%';
+      //   document.querySelector('.progress > i').style.width = progress + '%';
+      // }, 4000);
+
+      // Accessibility: allow focus outlines only when navigating via keyboard
+      function handleFirstTab(e) {
+        if (e.key === 'Tab') document.body.classList.add('show-focus');
+      }
+      window.addEventListener('keydown', handleFirstTab, { once: true });
+    })();
+  </script>
+</body>
+</html>
