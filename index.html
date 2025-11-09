@@ -3,42 +3,53 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kervian Links</title>
+    <title>Kervian Network</title>
+
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background: #f4f4f4;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #0b0f19;
+            color: #e0e0e0;
             margin: 0;
-            padding: 40px;
+            padding: 50px 20px;
         }
         h1 {
             text-align: center;
-            margin-bottom: 30px;
+            color: #0ff;
+            text-shadow: 0 0 10px #0ff;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
         }
         #links {
-            max-width: 500px;
+            max-width: 600px;
             margin: 0 auto;
-            padding: 0;
             list-style: none;
+            padding: 0;
         }
         #links li {
-            margin: 12px 0;
+            margin: 16px 0;
         }
         #links a {
             text-decoration: none;
-            padding: 14px 18px;
-            background: #fff;
-            border-radius: 6px;
+            padding: 16px 20px;
+            background: #111624;
+            border: 1px solid #0ff3;
+            border-radius: 8px;
             display: block;
-            border: 1px solid #ccc;
-            transition: 0.2s;
+            color: #0ff;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+            box-shadow: 0 0 12px #0ff2;
+            transition: 0.2s ease;
         }
         #links a:hover {
-            transform: translateX(5px);
-            border-color: #000;
+            border-color: #0ff;
+            box-shadow: 0 0 20px #0ff;
+            transform: translateX(6px);
         }
     </style>
 </head>
+
 <body>
 
 <h1>Kervian Network</h1>
@@ -46,7 +57,7 @@
 <ul id="links"></ul>
 
 <script>
-    // Add as many links as you want—just extend this array.
+    // Add more links here as needed
     const linkList = [
         { name: "Main Profile", url: "https://me.kervian.com" },
         { name: "Games Portal", url: "https://games.kervian.com" }
